@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import com.example.jwtauth.domain.Tree;
+import com.example.jwtauth.domain.Token;
 import com.example.jwtauth.repos.TreeRepository;
 
 @Configuration
@@ -29,7 +29,7 @@ public class CustomLogoutHandler implements LogoutHandler {
         }
 
         String token = authHeader.substring(7);
-        Tree storedToken = tokenRepository.findByToken(token).orElse(null);
+        Token storedToken = tokenRepository.findByToken(token).orElse(null);
         System.out.println("logout");
         if (storedToken != null) {
             storedToken.setLoggedOut(true);

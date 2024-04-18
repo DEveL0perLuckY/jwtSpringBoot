@@ -1,14 +1,14 @@
 package com.example.jwtauth.repos;
 
-import com.example.jwtauth.domain.Tree;
+import com.example.jwtauth.domain.Token;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface TreeRepository extends MongoRepository<Tree, Long> {
-    Optional<Tree> findByToken(String token);
+public interface TreeRepository extends MongoRepository<Token, Long> {
+    Optional<Token> findByToken(String token);
 
-    List<Tree> findByUser_IdAndLoggedOutIsFalse(Long userId);
+    List<Token> findByUser_IdAndLoggedOutIsFalse(Long userId);
 
 }

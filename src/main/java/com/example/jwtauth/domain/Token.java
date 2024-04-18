@@ -7,16 +7,14 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 //token
-@Document("trees")
+@Document("token")
 @Getter
 @Setter
-public class Tree {
-
+public class Token {
     @Id
     private Long id;
     private boolean loggedOut;
     private String token;
     @DBRef
     private User user;
-
 }

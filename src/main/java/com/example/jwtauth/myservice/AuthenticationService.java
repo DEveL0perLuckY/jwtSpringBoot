@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.jwtauth.domain.Role;
-import com.example.jwtauth.domain.Tree;
+import com.example.jwtauth.domain.Token;
 import com.example.jwtauth.domain.User;
 import com.example.jwtauth.model.ConstantsId;
 import com.example.jwtauth.repos.RoleRepository;
@@ -21,7 +21,6 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@SuppressWarnings("null")
 public class AuthenticationService {
 
     @Autowired
@@ -95,7 +94,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllTokenByUser(User user) {
-        List<Tree> validTokens = tokenRepository.findByUser_IdAndLoggedOutIsFalse(user.getId());
+        List<Token> validTokens = tokenRepository.findByUser_IdAndLoggedOutIsFalse(user.getId());
         if (validTokens.isEmpty()) {
             return;
         }
@@ -108,7 +107,7 @@ public class AuthenticationService {
     }
 
     private void saveUserToken(String jwt, User user) {
-        Tree token = new Tree();
+        Token token = new Token();
         token.setToken(jwt);
         token.setLoggedOut(false);
         token.setUser(user);
